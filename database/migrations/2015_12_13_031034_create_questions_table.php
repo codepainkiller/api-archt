@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAudiosCreate extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,13 @@ class CreateAudiosCreate extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('questions', function(Blueprint $table) {
+            $table->increments('id');
+
+            $table->text('name');
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -22,6 +28,6 @@ class CreateAudiosCreate extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('questions');
     }
 }

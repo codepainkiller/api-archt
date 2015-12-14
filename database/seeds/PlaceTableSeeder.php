@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Place;
 use Illuminate\Database\Seeder;
 
 class PlaceTableSeeder extends Seeder
@@ -11,6 +12,6 @@ class PlaceTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(Place::class, 70)->create();
     }
 }

@@ -18,10 +18,10 @@ class CreateAnswersTable extends Migration
             $table->text('answer');
 
             $table->integer('user_id')->unsigned();
-            $table->integer('questions_id')->unsigned();
+            $table->integer('question_id')->unsigned();
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('questions_id')->references('id')->on('questions');
+            $table->foreign('question_id')->references('id')->on('questions');
 
             $table->timestamps();
         });

@@ -13,7 +13,7 @@
                      </span>
             </header>
             <div class="panel-body">
-                Section in progress...
+                Section in progress.
             </div>
         </section>
     </div>

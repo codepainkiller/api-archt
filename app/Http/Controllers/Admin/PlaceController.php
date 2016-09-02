@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\PlaceRequest;
 use App\Models\Place;
 use Illuminate\Http\Request;
 
@@ -29,18 +30,22 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.places.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  PlaceRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PlaceRequest $request)
     {
-        //
+        Place::create($request->all());
+
+        session()->flash('flash_message', 'Lugar turístico registrado!.');
+
+        return redirect()->back();
     }
 
     /**

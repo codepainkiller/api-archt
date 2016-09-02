@@ -43,6 +43,13 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
+
+            @if (Session::has('flash_message'))
+                <div class="alert alert-success text-center">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ Session::get('flash_message') }}
+                </div>
+            @endif
             <!-- page start-->
             @yield('content')
             <!-- page end-->
@@ -77,6 +84,10 @@
 
 <!--common script init for all pages-->
 <script src="{{ asset('assets/js/scripts.js') }}"></script>
+
+<script>
+    $('div.alert').not('alert-important').delay(3000).slideUp(300);
+</script>
 
 @yield('js-content')
 

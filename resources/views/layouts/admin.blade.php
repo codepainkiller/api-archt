@@ -86,6 +86,8 @@
         <!--common script init for all pages-->
         <script src="{{ asset('assets/js/scripts.js') }}"></script>
 
+        <script src="{{ asset('js/app.js') }}"></script>
+
         <script>
             $('div.alert').not('alert-important').delay(3000).slideUp(300);
         </script>

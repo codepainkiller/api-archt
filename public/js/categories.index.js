@@ -13,7 +13,6 @@ function addRow(data) {
     $('tbody').append(html);
 }
 
-
 $('#createForm').submit(function (e) {
     e.preventDefault();
     $('#createModal').modal('hide');
@@ -23,14 +22,21 @@ $('#createForm').submit(function (e) {
 
     $.post(uri, data, function (data) {
         addRow(data);
-        alert('Categoría registrada!');
+        alertOverlay('Hecho!', 'Categoría registrada.', 'success');
     }).fail(function () {
-        alert('No se pudo realizar la operación');
+        alertOverlay('Error!', 'No se pudo realizar la operación', 'error');
     });
+});
+
+$('.btn-delete').on('click', function (e) {
+   alert('Delete');
+});
+
+$('.btn-edit').on('click', function (e) {
+    alert('Edit');
 });
 
 $('#createModal').on('show.bs.modal', function (e) {
     $('#name').val("");
 });
 
-swal({   title: "Auto close alert!",   text: "I will close in 2 seconds.",   timer: 2000,   showConfirmButton: false });

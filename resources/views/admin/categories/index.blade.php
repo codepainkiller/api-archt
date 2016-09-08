@@ -56,7 +56,7 @@
             <div class="modal-body row">
                 <div class="col-md-10 col-md-offset-1">
 
-                    <form id="createForm" action="/admin/category" method="POST">
+                    <form id="createForm" action="{{ route('admin.category.store')  }}" method="POST">
                         {{ csrf_field() }}
 
                         <div class="form-group">

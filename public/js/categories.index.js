@@ -5,34 +5,42 @@ function addRow(data) {
     html += '<td>' + data.id + '</td>';
     html += '<td>' + data.name + '</td>';
     html += '<td>' +
-        '<button href="#" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Editar</button> ' +
-        '<button href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar</button>' +
+        '<button href="#" class="btn btn-success btn-xs btn-edit"><i class="fa fa-pencil"></i> Editar</button> ' +
+        '<button href="#" class="btn btn-danger btn-xs btn-delete"><i class="fa fa-trash-o"></i> Eliminar</button>' +
         '</td>';
     html += '</tr>';
 
-    $('tbody').append(html);
+    $('table tbody').append(html);
 }
 
-$('#createForm').submit(function (e) {
-    e.preventDefault();
-    $('#createModal').modal('hide');
-
-    var uri = $(this).attr('action');
-    var data = $(this).serialize();
-
-    $.post(uri, data, function (data) {
-        addRow(data);
+function createAjaxCategory(uri, data) {
+    $.post(uri, data, function (response) {
+        addRow(response);
         alertOverlay('Hecho!', 'Categoría registrada.', 'success');
     }).fail(function () {
         alertOverlay('Error!', 'No se pudo realizar la operación', 'error');
     });
+}
+
+function deleteAjaxCategory(id) {
+
+}
+
+$('#createForm').submit(function (e) {
+    e.preventDefault();
+
+    $('#createModal').modal('hide');
+
+    createAjaxCategory($(this).attr('action'), $(this).serialize());
 });
 
-$('.btn-delete').on('click', function (e) {
-   alert('Delete');
+$('tbody').on('click', '.btn-delete', function (e) {
+   alertConfirm('¿Esta seguro?', 'Se eliminará permanentemente.', function () {
+       
+   });
 });
 
-$('.btn-edit').on('click', function (e) {
+$('tbody').on('click', '.btn-edit', function (e) {
     alert('Edit');
 });
 

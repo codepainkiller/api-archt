@@ -8,16 +8,15 @@ function alertOverlay(title, text, type) {
     });
 }
 
-function alertConfirm(title, text, confirmFunc) {
+function alertConfirm(text, confirmFunc) {
     swal({
-        title: title,
+        title: "¿Esta seguro?",
         text: text,
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
         confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "Cancelar",
         closeOnConfirm: false
-    }, function () {
-        swal("Deleted!", "Your imaginary file has been deleted.", "success");
-    });
+    }, confirmFunc);
 }

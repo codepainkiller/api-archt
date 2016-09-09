@@ -13,7 +13,7 @@ function addRow(data) {
     $('table tbody').append(html);
 }
 
-function createAjaxCategory(uri, data) {
+function createCategoryByAjax(uri, data) {
     $.post(uri, data, function (response) {
         addRow(response);
         alertOverlay('Hecho!', 'Categoría registrada.', 'success');
@@ -22,8 +22,20 @@ function createAjaxCategory(uri, data) {
     });
 }
 
-function deleteAjaxCategory(id) {
+function deleteCategoryByAjax(id, row) {
+    var form = $('#destroyForm');
+    var url  = form.attr('action').replace(':id', id);
 
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        data: form.serialize()
+    }).done(function (response) {
+        swal("Eliminado!", response, "success");
+        row.fadeOut();
+    }).fail(function () {
+        swal("Error!", 'No se pudo procesar la operación solicitada.', "error");
+    });
 }
 
 $('#createForm').submit(function (e) {
@@ -31,20 +43,25 @@ $('#createForm').submit(function (e) {
 
     $('#createModal').modal('hide');
 
-    createAjaxCategory($(this).attr('action'), $(this).serialize());
+    createCategoryByAjax($(this).attr('action'), $(this).serialize());
 });
 
-$('tbody').on('click', '.btn-delete', function (e) {
-   alertConfirm('¿Esta seguro?', 'Se eliminará permanentemente.', function () {
-       
-   });
+$('tbody').on('click', '.btn-delete', function () {
+    var row = $(this).parents('tr');
+    var id = row.data('id');
+    
+    alertConfirm("Se eliminará los lugares asociados a esta categoría.", function (isConfirm) {
+        if (isConfirm) {
+            deleteCategoryByAjax(id, row);
+        }
+    });
 });
 
-$('tbody').on('click', '.btn-edit', function (e) {
+$('tbody').on('click', '.btn-edit', function () {
     alert('Edit');
 });
 
-$('#createModal').on('show.bs.modal', function (e) {
+$('#createModal').on('show.bs.modal', function () {
     $('#name').val("");
 });
 

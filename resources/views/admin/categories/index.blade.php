@@ -41,6 +41,12 @@
     </div>
 </div>
 
+<!-- aux-forms-->
+<form id="destroyForm" action="{{ route('admin.category.destroy', ':id') }}" method="DELETE">
+    {{ csrf_field() }}
+</form>
+<!-- ./aux-forms -->
+
 @stop
 
 @section('modals')

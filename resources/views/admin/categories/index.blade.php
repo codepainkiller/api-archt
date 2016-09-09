@@ -51,6 +51,7 @@
 
 @section('modals')
 
+<!-- create-modal -->
 <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -81,6 +82,40 @@
         </div>
     </div>
 </div>
+<!-- ./create-modal -->
+
+<!-- edit-modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Categoría</h4>
+            </div>
+
+            <div class="modal-body row">
+                <div class="col-md-10 col-md-offset-1">
+
+                    <form id="editForm" action="{{ route('admin.category.update', ':id')  }}" method="PUT">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <label> Nombre</label>
+                            <input name="name" id="nameEdit" class="form-control" placeholder="Nuevo nombre" required>
+                        </div>
+
+                        <div class="pull-right">
+                            <button class="btn btn-primary" type="submit">Actualizar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- ./edit-modal -->
 
 @stop
 

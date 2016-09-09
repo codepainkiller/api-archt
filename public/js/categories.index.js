@@ -38,12 +38,34 @@ function deleteCategoryByAjax(id, row) {
     });
 }
 
+function updateCategoryByAjax() {
+    var form = $('#editForm');
+    var url  = form.attr('action').replace(':id', form.data('id'));
+
+    $.ajax({
+        url: url,
+        type: 'PUT',
+        data: form.serialize()
+    }).done(function (category) {
+        swal("Actualizado!", "El nuevo nombre fue guardado.", "success");
+        // Update row
+        location.reload();
+
+    }).fail(function () {
+        swal("Error!", 'No se pudo procesar la operación solicitada.', "error");
+    });
+}
+
 $('#createForm').submit(function (e) {
     e.preventDefault();
-
     $('#createModal').modal('hide');
-
     createCategoryByAjax($(this).attr('action'), $(this).serialize());
+});
+
+$('#editForm').submit(function (e) {
+    e.preventDefault();
+    $('#editModal').modal('hide');
+    updateCategoryByAjax();
 });
 
 $('tbody').on('click', '.btn-delete', function () {
@@ -58,10 +80,19 @@ $('tbody').on('click', '.btn-delete', function () {
 });
 
 $('tbody').on('click', '.btn-edit', function () {
-    alert('Edit');
+    var row = $(this).parents('tr');
+    var id = row.data('id');
+
+    $('#editForm').data('id', id);
+    $('#editModal').modal('show');
 });
 
 $('#createModal').on('show.bs.modal', function () {
     $('#name').val("");
 });
+
+$('#editModal').on('show.bs.modal', function () {
+    $('#nameEdit').val("");
+});
+
 

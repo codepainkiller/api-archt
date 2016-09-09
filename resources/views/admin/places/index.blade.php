@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
+
 <div class="row">
     <div class="col-sm-12">
         <section class="panel">
@@ -45,4 +46,5 @@
         </section>
     </div>
 </div>
-@endsection
+
+@stop

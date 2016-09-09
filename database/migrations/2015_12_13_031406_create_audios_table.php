@@ -19,7 +19,9 @@ class CreateAudiosTable extends Migration
 
             $table->integer('place_id')->unsigned();
 
-            $table->foreign('place_id')->references('id')->on('places');
+            $table->foreign('place_id')
+                ->references('id')->on('places')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

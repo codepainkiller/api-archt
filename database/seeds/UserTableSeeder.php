@@ -14,13 +14,13 @@ class UserTableSeeder extends Seeder
     {
         factory(User::class)->create([
             'name' => 'Martin Cruz',
-            'email' => 'info@martincruz.me',
+            'email' => 'i@martincruz.me',
             'password' => bcrypt('123456'),
         ]);
 
         factory(User::class)->create([
             'name' => 'Mario Vazquez',
-            'email' => 'vasquezalavaradomario@gmail.com',
+            'email' => 'vasquezalvaradomario@gmail.com',
             'password' => bcrypt('123456'),
         ]);
 

@@ -9,6 +9,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'Admin\IndexController@index')->name('admin.index');
     Route::resource('/user', 'Admin\UserController');
     Route::resource('/place', 'Admin\PlaceController');
+    Route::resource('/category', 'Admin\CategoryController');
 
 });
 

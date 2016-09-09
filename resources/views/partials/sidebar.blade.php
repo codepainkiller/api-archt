@@ -16,6 +16,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.category.index') }}" @routeIs('admin.place.index') class="active" @endif>
+                        <i class="fa fa-tags"></i>
+                        <span>Categorías</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.user.index') }}" @routeIs('admin.user.index') class="active" @endif>
                         <i class="fa fa-users"></i>
                         <span>Usuarios</span>

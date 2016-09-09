@@ -18,7 +18,7 @@ class CreateVisitsTable extends Migration
             $table->integer('place_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
-            $table->foreign('place_id')->references('id')->on('places');
+            $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();

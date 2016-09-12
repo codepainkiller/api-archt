@@ -18,6 +18,7 @@
         <!-- Custom styles for this template -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/style-responsive.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/libs/sweetalert.css') }}" rel="stylesheet" />
 
         <!-- Just for debugging purposes. Don't actually copy this line! -->
         <!--[if lt IE 9]>
@@ -86,6 +87,7 @@
         <!--common script init for all pages-->
         <script src="{{ asset('assets/js/scripts.js') }}"></script>
 
+        <script src="{{ asset('js/libs/sweetalert.min.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
 
         <script>

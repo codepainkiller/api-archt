@@ -15,7 +15,7 @@
                  </span>
             </header>
             <div class="panel-body">
-                <table class="table  table-hover general-table">
+                <table id="placesTable" class="table  table-hover general-table">
                     <thead>
                     <tr>
                         <th> Id</th>
@@ -28,7 +28,7 @@
                     </thead>
                     <tbody>
                     @foreach($places as $place)
-                        <tr>
+                        <tr data-id="{{ $place->id }}">
                             <td>{{ $place->id }}</td>
                             <td><a href="#">{{ $place->name }}</a></td>
                             <td>{{ $place->category->name }}</td>
@@ -36,7 +36,7 @@
                             <td>{{ $place->lng }}</td>
                             <td>
                                 <a href="{{ route('admin.place.edit', $place->id) }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Editar</a>
-                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar</a>
+                                <a href="#" class="btn btn-danger btn-xs btn-delete"><i class="fa fa-trash-o"></i> Eliminar</a>
                             </td>
                         </tr>
                     @endforeach
@@ -47,4 +47,13 @@
     </div>
 </div>
 
+<!-- aux-forms-->
+<form id="destroyForm" action="{{ route('admin.place.destroy', ':id') }}" method="DELETE">
+    {{ csrf_field() }}
+</form>
+
+@stop
+
+@section('js-content')
+    <script src="{{ asset('js/places.index.js') }}"></script>
 @stop

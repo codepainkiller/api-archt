@@ -97,6 +97,8 @@ class PlaceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Place::destroy($id);
+
+        return response('La categoria ha sido eliminada', 202);
     }
 }

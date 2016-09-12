@@ -119,11 +119,7 @@
 
 @stop
 
-@section('css-content')
-    <link rel="stylesheet" href="{{ asset('css/libs/sweetalert.css') }}" />
-@stop
-
 @section('js-content')
-    <script src="{{ asset('js/libs/sweetalert.min.js') }}"></script>
+
     <script src="{{ asset('js/categories.index.js') }}"></script>
 @stop

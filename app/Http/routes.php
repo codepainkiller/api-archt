@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return view('auth/login');
+    return redirect()->route('admin.index');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {

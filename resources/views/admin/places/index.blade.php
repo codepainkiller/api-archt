@@ -20,23 +20,23 @@
                     <tr>
                         <th> Id</th>
                         <th >Nombre</th>
+                        <th>Categoría</th>
                         <th>Latitud</th>
                         <th>Longitud</th>
-                        <th>Elevacion</th>
                         <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($places as $user)
+                    @foreach($places as $place)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td><a href="#">{{ $user->name }}</a></td>
-                            <td>{{ $user->lat }}</td>
-                            <td>{{ $user->lng }}</td>
-                            <td>{{ $user->elevation }}</td>
+                            <td>{{ $place->id }}</td>
+                            <td><a href="#">{{ $place->name }}</a></td>
+                            <td>{{ $place->category->name }}</td>
+                            <td>{{ $place->lat }}</td>
+                            <td>{{ $place->lng }}</td>
                             <td>
-                                <button href="#" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Editar</button>
-                                <button href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar</button>
+                                <a href="{{ route('admin.place.edit', $place->id) }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i> Editar</a>
+                                <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar</a>
                             </td>
                         </tr>
                     @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PlaceRequest;
+use App\Models\Category;
 use App\Models\Place;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::all();
+        $places = Place::with('category')->get();
 
         return view('admin.places.index', compact('places'));
     }
@@ -67,7 +68,9 @@ class PlaceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $place = Place::findOrFail($id);
+
+        return view('admin.places.edit', compact('place'));
     }
 
     /**
@@ -79,7 +82,11 @@ class PlaceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $place = Place::findOrFail($id);
+
+        $place->update($request->all());
+
+        return redirect()->route('admin.place.index');
     }
 
     /**

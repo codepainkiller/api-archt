@@ -30,7 +30,7 @@
                     @foreach($places as $place)
                         <tr data-id="{{ $place->id }}">
                             <td>{{ $place->id }}</td>
-                            <td><a href="#">{{ $place->name }}</a></td>
+                            <td><a href="{{ route('admin.place.show', $place->id) }}" class="text-primary">{{ $place->name }}</a></td>
                             <td>{{ $place->category->name }}</td>
                             <td>{{ $place->lat }}</td>
                             <td>{{ $place->lng }}</td>
@@ -42,6 +42,9 @@
                     @endforeach
                     </tbody>
                 </table>
+                <div class="text-center">
+                    {!! $places->render() !!}
+                </div>
             </div>
         </section>
     </div>

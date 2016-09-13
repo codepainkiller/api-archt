@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.category.index') }}" @routeIs('admin.place.index') class="active" @endif>
+                    <a href="{{ route('admin.category.index') }}" @routeIs('admin.category.index') class="active" @endif>
                         <i class="fa fa-tags"></i>
                         <span>Categorías</span>
                     </a>

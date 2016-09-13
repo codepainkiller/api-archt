@@ -15,4 +15,19 @@ class Place extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function addPhoto(Photo $photo)
+    {
+        return $this->photos()->save($photo);
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
+    public function audios()
+    {
+        return $this->hasMany(Audio::class);
+    }
 }

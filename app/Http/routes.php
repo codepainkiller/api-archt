@@ -11,6 +11,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('/place', 'Admin\PlaceController');
     Route::resource('/category', 'Admin\CategoryController');
 
+    Route::post('place/{id}/photos', 'Admin\PlaceController@addPhoto')->name('admin.place.photos');
+
 });
 
 // Authentication routes...

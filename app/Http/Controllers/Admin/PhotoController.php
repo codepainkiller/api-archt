@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\PlaceRequest;
-use App\Models\Category;
-use App\Models\Photo;
-use App\Models\Place;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class PlaceController extends Controller
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,9 +16,7 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $places = Place::with('category')->paginate(20);
-
-        return view('admin.places.index', compact('places'));
+        //
     }
 
     /**
@@ -32,22 +26,18 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        return view('admin.places.create');
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  PlaceRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PlaceRequest $request)
+    public function store(Request $request)
     {
-        Place::create($request->all());
-
-        session()->flash('flash_message', 'Lugar turístico registrado!.');
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -58,9 +48,7 @@ class PlaceController extends Controller
      */
     public function show($id)
     {
-        $place = Place::with('category', 'photos', 'audios')->findOrFail($id);
-
-        return view('admin.places.show', compact('place'));
+        //
     }
 
     /**
@@ -71,9 +59,7 @@ class PlaceController extends Controller
      */
     public function edit($id)
     {
-        $place = Place::findOrFail($id);
-
-        return view('admin.places.edit', compact('place'));
+        //
     }
 
     /**
@@ -85,11 +71,7 @@ class PlaceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $place = Place::findOrFail($id);
-
-        $place->update($request->all());
-
-        return redirect()->route('admin.place.index');
+        //
     }
 
     /**
@@ -100,21 +82,6 @@ class PlaceController extends Controller
      */
     public function destroy($id)
     {
-        Place::destroy($id);
-
-        return response('La categoria ha sido eliminada', 202);
-    }
-
-    public function addPhoto($id, Request $request)
-    {
-        $this->validate($request, [
-            'photo' => 'required|mimes:jpg,jpeg,png'
-        ]);
-
-        //$photo = Photo::formForm($request->file('photo'));
-
-        //Place::findOrFail($id)->addPhoto($photo);
-
-        return 'Done';
+        //
     }
 }

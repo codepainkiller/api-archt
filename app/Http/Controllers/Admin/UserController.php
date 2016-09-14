@@ -41,6 +41,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        if ($request->ajax()) {
+            return User::create($request->all());
+        }
     }
 
     /**
@@ -49,9 +52,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
         //
+        if ($request->ajax()) {
+            return User::findOrFail($id);
+        }
     }
 
     /**
@@ -75,6 +81,15 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $user = User::findOrFail($id);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = $request->get('password');
+        //$user->name = $request->get('usertype');
+        //$user->name = $request->get('userstatus');
+        $user->save();
+
+        return $user;
     }
 
     /**
@@ -86,5 +101,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        User::destroy($id);
+
+        return response('El usuario ha sido eliminado', 202);
     }
 }

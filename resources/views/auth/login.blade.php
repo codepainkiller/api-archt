@@ -34,27 +34,27 @@
 <div class="container">
 
     <form class="form-signin" action="{{ url('auth/login') }}" method="post">
-        <h2 class="form-signin-heading">Login</h2>
+        <h2 class="form-signin-heading">Iniciar Sesión</h2>
         @include('partials.errors')
         <div class="login-wrap">
             <div class="user-login-info">
-                <input name="email" type="text" class="form-control" placeholder="Email" autofocus>
-                <input name="password" type="password" class="form-control" placeholder="Password">
+                <input name="email" type="email" class="form-control" placeholder="Email" autofocus required>
+                <input name="password" type="password" class="form-control" placeholder="Contraseña" required>
                 {{ csrf_field() }}
             </div>
             <label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
+                <input type="checkbox" value="remember-me"> Recordarme
                 <span class="pull-right">
-                    <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
+                    <a data-toggle="modal" href="#"> ¿Se te olvidó tu contraseña?</a>
 
                 </span>
             </label>
-            <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-login btn-block" type="submit">Ingresar</button>
 
             <div class="registration">
-                Don't have an account yet?
-                <a class="" href="registration.html">
-                    Create an account
+                ¿No tiene una cuenta todavía?
+                <a class="" href="#">
+                    Crear cuenta
                 </a>
             </div>
 

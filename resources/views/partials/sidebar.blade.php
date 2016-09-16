@@ -10,6 +10,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.user.index') }}" @routeIs('admin.user.index') class="active" @endif>
+                        <i class="fa fa-users"></i>
+                        <span>Usuarios</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.place.index') }}" @routeIs('admin.place.index') class="active" @endif>
                         <i class="fa fa-location-arrow"></i>
                         <span>Lugares</span>
@@ -22,9 +28,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.user.index') }}" @routeIs('admin.user.index') class="active" @endif>
-                        <i class="fa fa-users"></i>
-                        <span>Usuarios</span>
+                    <a href="#">
+                        <i class="fa fa-check-circle"></i>
+                        <span>Visitas</span>
                     </a>
                 </li>
                 <li>

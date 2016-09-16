@@ -80,8 +80,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::findOrFail($id);
-        $category->name = $request->get('name');
-        $category->save();
+
+        $category->update($request->all());
 
         return $category;
     }
@@ -94,7 +94,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::destroy($id);
+        Category::findOrFail($id)->delete();
 
         return response('La categoria ha sido eliminada', 202);
     }

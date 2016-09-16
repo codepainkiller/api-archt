@@ -102,11 +102,7 @@ class PlaceController extends Controller
      */
     public function destroy($id)
     {
-        $count = Place::destroy($id);
-
-        if ($count) {
-            response('Lugar no encontrado.', 404);
-        }
+        Place::findOrFail($id)->delete();
 
         return response('La categoria ha sido eliminada', 202);
     }

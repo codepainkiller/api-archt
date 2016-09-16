@@ -54,4 +54,14 @@ class Photo extends Model
     {
         return $this->belongsTo(Place::class);
     }
+
+    public function delete()
+    {
+        \File::delete([
+            $this->path,
+            $this->thumbnail_path
+        ]);
+
+        parent::delete();
+    }
 }

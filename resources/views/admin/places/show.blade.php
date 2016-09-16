@@ -46,7 +46,15 @@
                 <div class="row">
                     @foreach($set as $photo)
                         <div class="col-md-4">
-                            <img src="/{{ $photo->thumbnail_path }}" alt="">
+                            <form method="POST" action="/admin/photos/{{ $photo->id }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"> Eliminar</i></button>
+                            </form>
+                            
+                            <a href="/{{ $photo->path }}" data-lity>
+                                <img src="/{{ $photo->thumbnail_path }}" alt="">
+                            </a>
                         </div>
                     @endforeach
                 </div>

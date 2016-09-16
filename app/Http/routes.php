@@ -13,6 +13,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::post('place/{id}/photos', 'Admin\PlaceController@addPhoto')->name('admin.place.photos');
 
+    Route::delete('photos/{id}', 'Admin\PhotosController@destroy');
+
 });
 
 // Authentication routes...

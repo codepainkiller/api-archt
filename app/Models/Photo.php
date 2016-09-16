@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -9,21 +10,44 @@ class Photo extends Model
 {
     protected $table = 'photos';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'path', 'thumbnail_path'];
 
-    protected $baseDir = 'places/photos';
+    protected $baseDir = 'images/places';
 
-    public static function formForm(UploadedFile $file)
+    /**
+     *  Build a new photo instance from a file upload
+     *
+     * @param string $name
+     * @return mixed
+     */
+    public static function named($name)
     {
-        $photo = new static;
+        return (new static)->saveAs($name);
+    }
 
-        $name = time() . $file->getClientOriginalName();
+    protected function saveAs($name)
+    {
+        $this->name = sprintf("%s-%s", time(), $name);
+        $this->path = sprintf("%s/%s", $this->baseDir, $this->name);
+        $this->thumbnail_path = sprintf("%s/tn-%s", $this->baseDir, $this->name);
 
-        $photo->name = $photo->baseDir . '/' . $name;
+        return $this;
+    }
 
-        $file->move($photo->baseDir, $name);
+    public function move(UploadedFile $file)
+    {
+        $file->move($this->baseDir, $this->name);
 
-        return $photo;
+        $this->makeThumbnail();
+
+        return $this;
+    }
+
+    protected function makeThumbnail()
+    {
+        Image::make($this->path)
+            ->fit(200)
+            ->save($this->thumbnail_path);
     }
 
     public function place()

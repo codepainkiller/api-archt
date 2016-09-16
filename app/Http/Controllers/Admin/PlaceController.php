@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\AddPhotoRequest;
 use App\Http\Requests\PlaceRequest;
 use App\Models\Category;
 use App\Models\Photo;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PlaceController extends Controller
 {
@@ -100,21 +102,32 @@ class PlaceController extends Controller
      */
     public function destroy($id)
     {
-        Place::destroy($id);
+        $count = Place::destroy($id);
+
+        if ($count) {
+            response('Lugar no encontrado.', 404);
+        }
 
         return response('La categoria ha sido eliminada', 202);
     }
 
-    public function addPhoto($id, Request $request)
+    public function addPhoto($id, AddPhotoRequest $request)
     {
-        $this->validate($request, [
-            'photo' => 'required|mimes:jpg,jpeg,png'
-        ]);
+        $place = Place::findOrFail($id);
 
-        //$photo = Photo::formForm($request->file('photo'));
+        if ($place->photos->count() >= 9) {
+            return response('Limite de fotos excedido.', 403);
+        }
 
-        //Place::findOrFail($id)->addPhoto($photo);
+        $photo = $this->makePhoto($request->file('photo'));
+        $place->addPhoto($photo);
 
-        return 'Done';
+        return response('La foto ha sido agregada!', 201);
+    }
+
+    protected function makePhoto(UploadedFile $file)
+    {
+        return Photo::named($file->getClientOriginalName())
+                ->move($file);
     }
 }

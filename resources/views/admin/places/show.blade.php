@@ -41,14 +41,16 @@
             </section>
         </div>
 
-        <section class="col-md-6">
-            <div class="panel">
-                <div class="panel-body">
-                    <img src="http://portal.andina.com.pe/EDPfotografia/Thumbnail/2015/07/01/000301374W.jpg" alt="">
-                    <img src="https://www.trcexpress.com/img/destinos/trujillo_b.jpg" alt="">
-                    <img src="https://c2.staticflickr.com/2/1330/1389459051_f4353858dd_b.jpg" alt="">
+        <section class="col-md-6 gallery">
+            @foreach($place->photos->chunk(3) as $set)
+                <div class="row">
+                    @foreach($set as $photo)
+                        <div class="col-md-4">
+                            <img src="/{{ $photo->thumbnail_path }}" alt="">
+                        </div>
+                    @endforeach
                 </div>
-            </div>
+            @endforeach
         </section>
     </div>
 
@@ -59,8 +61,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css" />
 
     <style>
-        img {  max-width: 100%; margin-bottom: 1em; }
-        .box-info {margin-bottom: 1.7em;}
+        img {  max-width: 100%; margin-bottom: 1em;}
+        .box-info {margin-bottom: 1.5em;}
     </style>
 @stop
 

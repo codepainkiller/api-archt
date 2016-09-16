@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(QuestionTableSeeder::class);
         $this->call(AnswerTableSeeder::class);
         $this->call(VisitTableSeeder::class);
-        $this->call(PhotoTableSeeder::class);
-        $this->call(AudioTableSeeder::class);
+        //$this->call(PhotoTableSeeder::class);
+        //$this->call(AudioTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 

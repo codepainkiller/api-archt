@@ -1,12 +1,15 @@
 function addRow(data) {
     var html = '';
+    var status="";
+    if(data.status == 1){status = "Activo";}
+    if(data.status == 0){status = "Inactivo";}
 
     html += '<tr>';
     html += '<td>' + data.id + '</td>';
     html += '<td>' + data.name + '</td>';
     html += '<td>' + data.email + '</td>';
-    html += '<td> Admin</td>';
-    html += '<td><span class="label label-success label-mini">Activo</span></td>'
+    html += '<td>' + data.type + '</td>';
+    html += '<td><span class="label label-success label-mini">'+ status +'</span></td>'
     html += '<td>' +
         '<button href="#" class="btn btn-success btn-xs btn-edit"><i class="fa fa-pencil"></i> Editar</button> ' +
         '<button href="#" class="btn btn-danger btn-xs btn-delete"><i class="fa fa-trash-o"></i> Eliminar</button>' +
@@ -18,6 +21,7 @@ function addRow(data) {
 
 function createUserByAjax(uri, data) {
     $.post(uri, data, function (response) {
+        alert(response);
         addRow(response);
         alertOverlay('Hecho!', 'Usuario registrado.', 'success');
     }).fail(function () {
@@ -82,12 +86,44 @@ $('tbody').on('click', '.btn-delete', function () {
     });
 });
 
+/*
+function requestUserByAjax(url,id){
+    $.ajax({
+        url: url+'/'+id,
+        type: 'GET'
+    }).done(function (response) {
+        $('#nameEdit').val(response.name);
+        $('#emailEdit').val(response.email);
+        $('#passwordEdit').val("");
+    }).fail(function () {
+
+    });
+}
+*/
+
 $('tbody').on('click', '.btn-edit', function () {
     var row = $(this).parents('tr');
     var id = row.data('id');
+    var name = $("#"+id+"name").html();
+    var email = $("#"+id+"email").html();
+    var status = $("#"+id+"status").html();
+    var type = $("#"+id+"type").html();
 
-    $('#editForm').data('id', id);
     $('#editModal').modal('show');
+
+    $('#nameEdit').val(name);
+    $('#emailEdit').val(email);
+
+    $('#statusEdit > option[value=status]').attr('selected', true);
+
+
+
+    $('#typeEdit > option[value=type]').attr('selected', true);
+
+
+
+    //$('#editForm').data('id', id);
+
 });
 
 $('#createModal').on('show.bs.modal', function () {

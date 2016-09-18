@@ -18,7 +18,6 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-
         return view('admin.users.index', compact('users'));
     }
 
@@ -41,9 +40,26 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $datos = ['name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password')),
+            'type' => $request->get('type'),
+            'status' => $request->get('status')
+        ];
+
         if ($request->ajax()) {
-            return User::create($request->all());
+            $user = User::create($datos);
+            $response = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'type' => $user->type,
+                'status' => $user->status
+            ];
+            return $response;
+            //$user-> save();
         }
+
     }
 
     /**
@@ -85,8 +101,8 @@ class UserController extends Controller
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->password = $request->get('password');
-        //$user->name = $request->get('usertype');
-        //$user->name = $request->get('userstatus');
+        $user->name = $request->get('type');
+        $user->name = $request->get('status');
         $user->save();
 
         return $user;
@@ -101,8 +117,13 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-        User::destroy($id);
 
-        return response('El usuario ha sido eliminado', 202);
+        User::findOrFail($id)->delete();
+
+        return response('El usuario ha sido eliminada', 202);
+
+        //User::destroy($id);
+
+        //return response('El usuario ha sido eliminado', 202);
     }
 }

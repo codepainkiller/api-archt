@@ -25,7 +25,7 @@
                     <thead>
                         <tr>
                             <th> Id</th>
-                            <th >Nombre</th>
+                            <th>Nombre</th>
                             <th>Email</th>
                             <th>Tipo</th>
                             <th>Estado</th>
@@ -34,12 +34,12 @@
                     </thead>
                     <tbody>
                         @foreach($users as $user)
-                        <tr>
-                            <td>{{ $user->id }}</td>
-                            <td><a href="#">{{ $user->name }}</a></td>
-                            <td>{{ $user->email }}</td>
-                            <td>Admin</td>
-                            <td><span class="label label-success label-mini">Activo</span></td>
+                        <tr data-id="{{ $user->id }}">
+                            <td id="{{ $user->id }}id">{{ $user->id }}</td>
+                            <td id="{{ $user->id }}name">{{ $user->name }}</td>
+                            <td id="{{ $user->id }}email">{{ $user->email }}</td>
+                            <td id="{{ $user->id }}type">{{ $user->type }}</td>
+                            <td id="{{ $user->id }}status"><span class="label label-success label-mini">{{ $user->status }}</span></td>
                             <td>
                                <button href="#" class="btn btn-success btn-xs btn-edit"><i class="fa fa-pencil"></i> Editar</button>
                                <button href="#" class="btn btn-danger btn-xs btn-delete"><i class="fa fa-trash-o"></i> Eliminar</button>
@@ -94,23 +94,23 @@
                                 <input name="password" id="password" class="form-control" placeholder="Ingrese contraseña" required>
                         </div>
 
-                        <!--
+
                         <div class="form-group">
                                 <label> Tipo de usuario</label>
-                                <select name="usertype" id="usertype" class="form-control">
-                                    <option value="1">administrador</option>
-                                    <option value="2">registrado</option>
+                                <select name="type" id="type" class="form-control">
+                                    <option value="admin">administrador</option>
+                                    <option value="user">registrado</option>
                                 </select>
                         </div>
 
                         <div class="form-group">
                                 <label> Estado</label>
-                                <select name="userstatus" id="userstatus" class="form-control">
+                                <select name="status" id="status" class="form-control">
+                                    <option value="0">Inactivo</option>
                                     <option value="1">Activo</option>
-                                    <option value="2">Inactivo</option>
                                 </select>
                         </div>
-                        -->
+
                         <div class="pull-right">
                             <button class="btn btn-primary" type="submit">Guardar</button>
                         </div>
@@ -149,27 +149,29 @@
                                <input name="emailEdit" id="emailEdit" class="form-control" placeholder="Ingrese correo" required>
                        </div>
 
+                       <!--
                        <div class="form-group">
                                <label> Contraseña</label>
                                <input name="passwordEdit" id="passwordEdit" class="form-control" placeholder="Ingrese contraseña" required>
                        </div>
-                       <!--
+                       -->
+
                        <div class="form-group">
                                <label> Tipo de usuario</label>
-                               <select name="usertypeEdit" id="usertypeEdit" class="form-control">
-                                   <option value="1">administrador</option>
-                                   <option value="2">registrado</option>
+                               <select name="typeEdit" id="usertypeEdit" class="form-control">
+                                   <option value="admin">admin</option>
+                                   <option value="user">user</option>
                                </select>
                        </div>
 
                        <div class="form-group">
                                <label> Estado</label>
-                               <select name="userstatusEdit" id="userstatusEdit" class="form-control">
+                               <select name="statusEdit" id="userstatusEdit" class="form-control">
+                                   <option value="0">Inactivo</option>
                                    <option value="1">Activo</option>
-                                   <option value="2">Inactivo</option>
                                </select>
                        </div>
-                       -->
+
                         <div class="pull-right">
                             <button class="btn btn-primary" type="submit">Actualizar</button>
                         </div>

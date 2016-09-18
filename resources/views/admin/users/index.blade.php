@@ -98,8 +98,8 @@
                         <div class="form-group">
                                 <label> Tipo de usuario</label>
                                 <select name="type" id="type" class="form-control">
-                                    <option value="admin">administrador</option>
                                     <option value="user">registrado</option>
+                                    <option value="admin">administrador</option>
                                 </select>
                         </div>
 
@@ -158,17 +158,21 @@
 
                        <div class="form-group">
                                <label> Tipo de usuario</label>
-                               <select name="typeEdit" id="usertypeEdit" class="form-control">
+                               <select name="typeEdit" id="typeEdit" class="form-control">
+                                   <!--
                                    <option value="admin">admin</option>
                                    <option value="user">user</option>
+                                   -->
                                </select>
                        </div>
 
                        <div class="form-group">
                                <label> Estado</label>
-                               <select name="statusEdit" id="userstatusEdit" class="form-control">
+                               <select name="statusEdit" id="statusEdit" class="form-control">
+                                   <!--
                                    <option value="0">Inactivo</option>
                                    <option value="1">Activo</option>
+                                   -->
                                </select>
                        </div>
 

@@ -106,7 +106,7 @@ $('tbody').on('click', '.btn-edit', function () {
     var id = row.data('id');
     var name = $("#"+id+"name").html();
     var email = $("#"+id+"email").html();
-    var status = $("#"+id+"status").html();
+    var status = $("#"+id+"status  span").html();
     var type = $("#"+id+"type").html();
 
     $('#editModal').modal('show');
@@ -114,13 +114,33 @@ $('tbody').on('click', '.btn-edit', function () {
     $('#nameEdit').val(name);
     $('#emailEdit').val(email);
 
-    $('#statusEdit > option[value=status]').attr('selected', true);
+    if(status==0) {
+        $('#statusEdit').html('<option value="0" selected>Inactivo</option><option value="1" >Activo</option>')
+    }
+    else{
+        $('#statusEdit').html('<option value="0">Inactivo</option><option value="1" selected>Activo</option>')
+    }
+
+    if(type=='user') {
+        $('#typeEdit').html('<option value="user" selected>Usuario</option><option value="admin" >Administrador</option>')
+    }
+    else{
+        $('#typeEdit').html('<option value="user">Usuario</option><option value="admin" selected>Administrador</option>')
+    }
+
+    $('#statusEdit > option[value='+status+']').attr('selected', true);
+    /*
+    $('#statusEdit > option[value='+0+']').attr('selected', false);
+    $('#statusEdit > option[value='+1+']').attr('selected', false);
+
+    $('#typeEdit > option[value='+'user'+']').attr('selected', false);
+    $('#typeEdit > option[value='+'admin'+']').attr('selected', false);
 
 
+    $('#statusEdit > option[value='+status+']').attr('selected', true);
 
-    $('#typeEdit > option[value=type]').attr('selected', true);
-
-
+    $('#typeEdit > option[value='+type+']').attr('selected', true);
+    */
 
     //$('#editForm').data('id', id);
 

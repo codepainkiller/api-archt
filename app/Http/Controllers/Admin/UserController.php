@@ -73,6 +73,7 @@ class UserController extends Controller
         //
         if ($request->ajax()) {
             return User::findOrFail($id);
+
         }
     }
 
@@ -94,15 +95,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
-        $user = User::findOrFail($id);
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-        $user->password = $request->get('password');
-        $user->name = $request->get('type');
-        $user->name = $request->get('status');
+        $user = User::findOrFail('EditRowId');
+        $user->name = $request->get('nameEdit');
+        $user->email = $request->get('emailEdit');
+        //$user->password = $request->get('password');
+        $user->type = $request->get('typeEdit');
+        $user->status = $request->get('statusEdit');
         $user->save();
 
         return $user;

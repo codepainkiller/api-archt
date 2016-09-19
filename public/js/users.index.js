@@ -102,8 +102,10 @@ function requestUserByAjax(url,id){
 */
 
 $('tbody').on('click', '.btn-edit', function () {
+
     var row = $(this).parents('tr');
     var id = row.data('id');
+    $("#EditRowId").val(id);
     var name = $("#"+id+"name").html();
     var email = $("#"+id+"email").html();
     var status = $("#"+id+"status  span").html();

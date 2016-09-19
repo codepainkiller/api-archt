@@ -124,6 +124,7 @@
 </div>
 <!-- ./create-modal -->
 
+
 <!-- edit-modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -138,6 +139,10 @@
 
                     <form id="editForm" action="{{ route('admin.user.update', ':id')  }}" method="PUT">
                         {{ csrf_field() }}
+
+                        <!--HIDDEN FIELD-->
+                        <input id="EditRowId" type="text" class="hidden">
+                        <!--./Hidden Field-->
 
                        <div class="form-group">
                            <label> Nombre</label>

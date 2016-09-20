@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(15);
         return view('admin.users.index', compact('users'));
     }
 
@@ -28,53 +29,24 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
-        $datos = ['name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password')),
-            'type' => $request->get('type'),
-            'status' => $request->get('status')
-        ];
+        $request->offsetSet('password', bcrypt($request->get('password')));
 
-        if ($request->ajax()) {
-            $user = User::create($datos);
-            $response = [
-                'id' => $user->id,
-                'name' => $user->name,
-                'email' => $user->email,
-                'type' => $user->type,
-                'status' => $user->status
-            ];
-            return $response;
-            //$user-> save();
-        }
+        User::create($request->all());
 
-    }
+        session()->flash('flash_message', "Usuario registrado exitosamente.");
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id, Request $request)
-    {
-        //
-        if ($request->ajax()) {
-            return User::findOrFail($id);
-
-        }
+        return redirect()->route('admin.user.index');
     }
 
     /**
@@ -85,28 +57,34 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UserRequest $request, $id)
     {
-        //
-        $user = User::findOrFail('EditRowId');
-        $user->name = $request->get('nameEdit');
-        $user->email = $request->get('emailEdit');
-        //$user->password = $request->get('password');
-        $user->type = $request->get('typeEdit');
-        $user->status = $request->get('statusEdit');
-        $user->save();
+        $user = User::findOrFail($id);
 
-        return $user;
+        if ($request->has('password')) {
+            $request->offsetSet('password', bcrypt($request->get('password')));
+            // Send Email
+        } else {
+            $request->offsetUnset('password');
+        }
+
+        $user->update($request->all());
+
+        session()->flash('flash_message', "Usuario actualizado.");
+
+        return redirect()->route('admin.user.index');
     }
 
     /**
@@ -117,14 +95,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
-
         User::findOrFail($id)->delete();
 
-        return response('El usuario ha sido eliminada', 202);
-
-        //User::destroy($id);
-
-        //return response('El usuario ha sido eliminado', 202);
+        return response('El usuario ha sido eliminado.', 202);
     }
 }

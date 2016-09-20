@@ -63,6 +63,20 @@ function updateUserByAjax() {
     });
 }
 
+$('tbody').on('click', '.btn-delete', function () {
+    var row = $(this).parents('tr');
+    var id = row.data('id');
+
+    console.log(id);
+
+    alertConfirm("Se eliminará los datos asociados a este usuario.", function (isConfirm) {
+        if (isConfirm) {
+            deleteUserByAjax(id, row);
+        }
+    });
+});
+
+/*
 $('#createForm').submit(function (e) {
     e.preventDefault();
     $('#createModal').modal('hide');
@@ -74,32 +88,6 @@ $('#editForm').submit(function (e) {
     $('#editModal').modal('hide');
     updateUserByAjax();
 });
-
-$('tbody').on('click', '.btn-delete', function () {
-    var row = $(this).parents('tr');
-    var id = row.data('id');
-    
-    alertConfirm("Se eliminará los datos asociados a este usuario.", function (isConfirm) {
-        if (isConfirm) {
-            deleteUserByAjax(id, row);
-        }
-    });
-});
-
-/*
-function requestUserByAjax(url,id){
-    $.ajax({
-        url: url+'/'+id,
-        type: 'GET'
-    }).done(function (response) {
-        $('#nameEdit').val(response.name);
-        $('#emailEdit').val(response.email);
-        $('#passwordEdit').val("");
-    }).fail(function () {
-
-    });
-}
-*/
 
 $('tbody').on('click', '.btn-edit', function () {
 
@@ -131,18 +119,6 @@ $('tbody').on('click', '.btn-edit', function () {
     }
 
     $('#statusEdit > option[value='+status+']').attr('selected', true);
-    /*
-    $('#statusEdit > option[value='+0+']').attr('selected', false);
-    $('#statusEdit > option[value='+1+']').attr('selected', false);
-
-    $('#typeEdit > option[value='+'user'+']').attr('selected', false);
-    $('#typeEdit > option[value='+'admin'+']').attr('selected', false);
-
-
-    $('#statusEdit > option[value='+status+']').attr('selected', true);
-
-    $('#typeEdit > option[value='+type+']').attr('selected', true);
-    */
 
     //$('#editForm').data('id', id);
 
@@ -159,5 +135,6 @@ $('#editModal').on('show.bs.modal', function () {
     $('#emailEdit').val("");
     $('#passwordEdit').val("");
 });
+*/
 
 

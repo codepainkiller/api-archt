@@ -62,7 +62,7 @@ return [
     'present'              => 'El campo :attribute debe estar presente.',
     'regex'                => 'El formato de :attribute es inválido.',
     'required'             => 'El campo :attribute es obligatorio.',
-    'required_if'          => 'El campo :attribute es obligatorio cuando :other es :value.',
+    'required_if'          => 'El campo :attribute es obligatorio.',
     'required_unless'      => 'El campo :attribute es obligatorio a menos que :other esté en :values.',
     'required_with'        => 'El campo :attribute es obligatorio cuando :values está presente.',
     'required_with_all'    => 'El campo :attribute es obligatorio cuando :values está presente.',
@@ -109,12 +109,12 @@ return [
     */
 
     'attributes'           => [
-        'name'                  => 'nombre',
-        'username'              => 'usuario',
-        'email'                 => 'correo electrónico',
-        'first_name'            => 'nombre',
-        'last_name'             => 'apellido',
-        'password'              => 'contraseña',
+        'name'                  => 'Nombre',
+        'username'              => 'Usuario',
+        'email'                 => 'Email',
+        'first_name'            => 'Nombre',
+        'last_name'             => 'Apellido',
+        'password'              => 'Contraseña',
         'password_confirmation' => 'confirmación de la contraseña',
         'city'                  => 'ciudad',
         'country'               => 'país',

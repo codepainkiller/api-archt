@@ -14,10 +14,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('place/{id}/photos', 'Admin\PlaceController@addPhoto')->name('admin.place.photos');
 
     Route::delete('photos/{id}', 'Admin\PhotosController@destroy');
-
 });
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+Route::get('helpers/str-random', function () {
+    return str_random(10);
+});

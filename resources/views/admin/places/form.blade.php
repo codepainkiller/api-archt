@@ -50,5 +50,6 @@
 </div>
 
 <div class="text-center">
+    <a href="{{ route('admin.place.index') }}" class="btn btn-default">Cancelar</a>
     <button type="submit" class="btn btn-primary">{{ $submitButtonText }}</button>
 </div>

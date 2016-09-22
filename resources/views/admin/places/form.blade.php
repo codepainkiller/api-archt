@@ -11,6 +11,7 @@
     {!! Form::number('lat', null, [
         'class' => 'form-control',
         'placeholder' => 'Ejm: -8.108323',
+        'step' => 'any',
         'required' => true]) !!}
 </div>
 
@@ -19,12 +20,13 @@
     {!! Form::number('lng', null, [
         'class' => 'form-control',
         'placeholder' => 'Ejm: -79.028408',
+        'step' => 'any',
         'required' => true]) !!}
 </div>
 
 <div class="form-group">
     <label for="">Elevación</label>
-    {!! Form::number('elevation', null, ['class' => 'form-control']) !!}
+    {!! Form::number('elevation', null, ['class' => 'form-control', 'step' => 'any']) !!}
 </div>
 
 <div class="form-group">

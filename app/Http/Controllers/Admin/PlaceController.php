@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AddPhotoRequest;
 use App\Http\Requests\PlaceRequest;
-use App\Models\Category;
 use App\Models\Photo;
 use App\Models\Place;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class PlaceController extends Controller
 {
@@ -115,15 +113,10 @@ class PlaceController extends Controller
             return response('Limite de fotos excedido.', 403);
         }
 
-        $photo = $this->makePhoto($request->file('photo'));
+        $photo = Photo::fromFile($request->file('photo'));
+
         $place->addPhoto($photo);
 
         return response('La foto ha sido agregada!', 201);
-    }
-
-    protected function makePhoto(UploadedFile $file)
-    {
-        return Photo::named($file->getClientOriginalName())
-                ->move($file);
     }
 }

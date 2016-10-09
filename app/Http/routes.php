@@ -30,6 +30,8 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::get('places/{id}/photos', 'Api\PlaceController@photos');
 
     Route::get('photos', 'Api\PhotosController@index');
+
+    Route::get('mixare/places', 'Api\MixareController@index');
 });
 
 // Authentication routes...
